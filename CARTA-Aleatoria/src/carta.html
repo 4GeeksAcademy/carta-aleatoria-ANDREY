@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carta Aleatoria Mejorada</title>
+    <style>
+        body {
+            background-color: green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 250px;
+            height: 350px;
+            border-radius: 15px;
+            background-color: white;
+            border: 2px solid #000;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .top-left,
+        .bottom-right {
+            position: absolute;
+            font-size: 40px;
+        }
+
+        .top-left {
+            top: 10px;
+            left: 15px;
+        }
+
+        .bottom-right {
+            bottom: 10px;
+            right: 15px;
+            transform: rotate(180deg);
+        }
+
+        .centro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+        }
+
+        .heart,
+        .diamond {
+            color: red;
+        }
+
+        .spade,
+        .club {
+            color: black;
+        }
+    </style>
+</head>
+
+<body onload="generateCard()">
+
+    <div id="card" class="card">
+        <div class="top-left"></div>
+        <div class="centro"></div>
+        <div class="bottom-right"></div>
+    </div>
+
+    <script>
+        function generateCard() {
+            const suits = [
+                { name: 'heart', symbol: '♥' },
+                { name: 'diamond', symbol: '♦' },
+                { name: 'spade', symbol: '♠' },
+                { name: 'club', symbol: '♣' }
+            ];
+
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+            const randomSuit = suits[Math.floor(Math.random() * suits.length)];
+            const randomValue = values[Math.floor(Math.random() * values.length)];
+
+            const cardDiv = document.getElementById('card');
+            cardDiv.className = 'card ' + randomSuit.name;
+
+            const topLeft = cardDiv.querySelector('.top-left');
+            const center = cardDiv.querySelector('.centro');
+            const bottomRight = cardDiv.querySelector('.bottom-right');
+
+            topLeft.textContent = randomSuit.symbol;
+            center.textContent = randomValue;
+            bottomRight.textContent = randomSuit.symbol;
+        }
+    </script>
+
+</body>
+
+</html>
